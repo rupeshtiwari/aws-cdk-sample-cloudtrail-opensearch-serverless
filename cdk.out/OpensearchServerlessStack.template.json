@@ -582,7 +582,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "7daba06772b79e254ae60e3a7798f8930ce076aeb9abd4506bbae58c238c8ff0.zip"
+     "S3Key": "1b28e1a7473273bc3537fc12d34f097d7d136329793c813e2d858f70b52c27ee.zip"
     },
     "CompatibleRuntimes": [
      "python3.9"
@@ -590,7 +590,7 @@
    },
    "Metadata": {
     "aws:cdk:path": "OpensearchServerlessStack/Boto3LambdaLayer/Resource",
-    "aws:asset:path": "asset.7daba06772b79e254ae60e3a7798f8930ce076aeb9abd4506bbae58c238c8ff0",
+    "aws:asset:path": "asset.1b28e1a7473273bc3537fc12d34f097d7d136329793c813e2d858f70b52c27ee",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Content"
    }
@@ -712,7 +712,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "33d9a98be7187c75f5106c960e2cc8231e4357c313e50dcdb587593b0ddb3b75.zip"
+     "S3Key": "a0939c1f7db6bc38c24487f23531a829b604d1822634e8a98920048e02c31634.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -772,7 +772,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/Resource",
-    "aws:asset:path": "asset.33d9a98be7187c75f5106c960e2cc8231e4357c313e50dcdb587593b0ddb3b75",
+    "aws:asset:path": "asset.a0939c1f7db6bc38c24487f23531a829b604d1822634e8a98920048e02c31634",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }

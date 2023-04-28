@@ -27,12 +27,6 @@ This example demonstrates setting up a OpenSearch Serverless, CloudTrail and Clo
 
 Amazon OpenSearch API is only within VPC and the OpenSearch dashboard is allowed for public so you do not need to run Nginx.
 
-⚠️ Before running `CDK deploy`, please update the User IAM ARN in the `index.py` file.
-
-```
-ARN_IAM_USER = "arn:aws:iam::<yourAWSAccount>:user/<UserName>"
-```
-
 You can change the CloudTrail group name, Amazon OpenSearch collection name, CloudWatch retention. Below are default values. Here is the documentation of [Amazon OpenSearch Serverless Security](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-security.html) to read for you.
 
 ```

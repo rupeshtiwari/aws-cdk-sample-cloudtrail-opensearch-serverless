@@ -29,6 +29,8 @@ def handler(event, context):
         region = os.environ["REGION"]
         service = "aoss"
         credentials = boto3.Session().get_credentials()
+      
+        
         awsauth = AWS4Auth(
             credentials.access_key,
             credentials.secret_key,

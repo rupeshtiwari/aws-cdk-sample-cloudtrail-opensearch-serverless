@@ -15,15 +15,16 @@ from aws_cdk import (
     aws_opensearchserverless as opensearchserverless,
     RemovalPolicy,
 )
+import boto3
 from aws_cdk.aws_s3_assets import Asset
 from constructs import Construct
 
-
 ## Constants
-ARN_IAM_USER = ""  # Input your IAM User ARN
 LOG_GROUP_NAME = "handler/svl_cloudtrail_logs"
 COLLECTION_NAME = "ctcollection"
+INDEX_NAME="cwl"
 CWL_RETENTION = cwl.RetentionDays.THREE_DAYS
+ARN_IAM_USER = boto3.client("sts").get_caller_identity()["Arn"]
 ENCRYPTIONPOLICY = f"""{{"Rules":[{{"ResourceType":"collection","Resource":["collection/{COLLECTION_NAME}"]}}],"AWSOwnedKey":true}}"""
 NETWORKPOLICY = f"""[{{"Description":"Endpoint access for Lambda and for random querying","SourceVPCEs":["VPCENDPOINTID"],"Rules":[{{"ResourceType":"collection","Resource":["collection/{COLLECTION_NAME}"]}}],"AllowFromPublic":false}},{{"Description":"Dashboards access","AllowFromPublic":true,"Rules":[{{"ResourceType":"dashboard","Resource":["collection/{COLLECTION_NAME}"]}}]}}]"""
 DATAPOLICY = f"""[
@@ -37,7 +38,7 @@ DATAPOLICY = f"""[
         }},
         {{
           "ResourceType":"index",
-          "Resource":["index/*/*"],
+          "Resource":["index/{INDEX_NAME}-*"],
           "Permission":["aoss:*"]
         }}
     ],
