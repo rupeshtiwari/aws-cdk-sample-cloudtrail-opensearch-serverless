@@ -1,0 +1,1286 @@
+{
+ "Resources": {
+  "SvlCTCWLVpcEDC545C8": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/Resource"
+   }
+  },
+  "SvlCTCWLVpcPublicSubnet1Subnet002FE673": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "SvlCTCWLVpcEDC545C8"
+    },
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.0.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/Subnet"
+   }
+  },
+  "SvlCTCWLVpcPublicSubnet1RouteTable1730BCFB": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "SvlCTCWLVpcEDC545C8"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/RouteTable"
+   }
+  },
+  "SvlCTCWLVpcPublicSubnet1RouteTableAssociation7382A5B7": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "SvlCTCWLVpcPublicSubnet1RouteTable1730BCFB"
+    },
+    "SubnetId": {
+     "Ref": "SvlCTCWLVpcPublicSubnet1Subnet002FE673"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/RouteTableAssociation"
+   }
+  },
+  "SvlCTCWLVpcPublicSubnet1DefaultRouteE2F6C5C1": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "SvlCTCWLVpcPublicSubnet1RouteTable1730BCFB"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "SvlCTCWLVpcIGW121204F9"
+    }
+   },
+   "DependsOn": [
+    "SvlCTCWLVpcVPCGWEF2E20E7"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/DefaultRoute"
+   }
+  },
+  "SvlCTCWLVpcPublicSubnet1EIPC2DE3BD0": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/EIP"
+   }
+  },
+  "SvlCTCWLVpcPublicSubnet1NATGateway49EC2790": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "SubnetId": {
+     "Ref": "SvlCTCWLVpcPublicSubnet1Subnet002FE673"
+    },
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "SvlCTCWLVpcPublicSubnet1EIPC2DE3BD0",
+      "AllocationId"
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1"
+     }
+    ]
+   },
+   "DependsOn": [
+    "SvlCTCWLVpcPublicSubnet1DefaultRouteE2F6C5C1",
+    "SvlCTCWLVpcPublicSubnet1RouteTableAssociation7382A5B7"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/NATGateway"
+   }
+  },
+  "SvlCTCWLVpcPublicSubnet2SubnetA8905795": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "SvlCTCWLVpcEDC545C8"
+    },
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.64.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/Subnet"
+   }
+  },
+  "SvlCTCWLVpcPublicSubnet2RouteTable612AEFE7": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "SvlCTCWLVpcEDC545C8"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/RouteTable"
+   }
+  },
+  "SvlCTCWLVpcPublicSubnet2RouteTableAssociationCB6ABAC3": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "SvlCTCWLVpcPublicSubnet2RouteTable612AEFE7"
+    },
+    "SubnetId": {
+     "Ref": "SvlCTCWLVpcPublicSubnet2SubnetA8905795"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/RouteTableAssociation"
+   }
+  },
+  "SvlCTCWLVpcPublicSubnet2DefaultRouteD17E170C": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "SvlCTCWLVpcPublicSubnet2RouteTable612AEFE7"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "SvlCTCWLVpcIGW121204F9"
+    }
+   },
+   "DependsOn": [
+    "SvlCTCWLVpcVPCGWEF2E20E7"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/DefaultRoute"
+   }
+  },
+  "SvlCTCWLVpcPublicSubnet2EIPEF505E6B": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/EIP"
+   }
+  },
+  "SvlCTCWLVpcPublicSubnet2NATGatewayE5536EC7": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "SubnetId": {
+     "Ref": "SvlCTCWLVpcPublicSubnet2SubnetA8905795"
+    },
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "SvlCTCWLVpcPublicSubnet2EIPEF505E6B",
+      "AllocationId"
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "SvlCTCWLVpcPublicSubnet2DefaultRouteD17E170C",
+    "SvlCTCWLVpcPublicSubnet2RouteTableAssociationCB6ABAC3"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/NATGateway"
+   }
+  },
+  "SvlCTCWLVpcPrivateSubnet1SubnetB4F9D598": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "SvlCTCWLVpcEDC545C8"
+    },
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.128.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1/Subnet"
+   }
+  },
+  "SvlCTCWLVpcPrivateSubnet1RouteTableB43422D9": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "SvlCTCWLVpcEDC545C8"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1/RouteTable"
+   }
+  },
+  "SvlCTCWLVpcPrivateSubnet1RouteTableAssociationE109145C": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "SvlCTCWLVpcPrivateSubnet1RouteTableB43422D9"
+    },
+    "SubnetId": {
+     "Ref": "SvlCTCWLVpcPrivateSubnet1SubnetB4F9D598"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1/RouteTableAssociation"
+   }
+  },
+  "SvlCTCWLVpcPrivateSubnet1DefaultRoute75082C4F": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "SvlCTCWLVpcPrivateSubnet1RouteTableB43422D9"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "SvlCTCWLVpcPublicSubnet1NATGateway49EC2790"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1/DefaultRoute"
+   }
+  },
+  "SvlCTCWLVpcPrivateSubnet2SubnetF8DAF71A": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "SvlCTCWLVpcEDC545C8"
+    },
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.192.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2/Subnet"
+   }
+  },
+  "SvlCTCWLVpcPrivateSubnet2RouteTable013CCA08": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "SvlCTCWLVpcEDC545C8"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2/RouteTable"
+   }
+  },
+  "SvlCTCWLVpcPrivateSubnet2RouteTableAssociation464D38AA": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "SvlCTCWLVpcPrivateSubnet2RouteTable013CCA08"
+    },
+    "SubnetId": {
+     "Ref": "SvlCTCWLVpcPrivateSubnet2SubnetF8DAF71A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2/RouteTableAssociation"
+   }
+  },
+  "SvlCTCWLVpcPrivateSubnet2DefaultRoute44D1CC81": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "SvlCTCWLVpcPrivateSubnet2RouteTable013CCA08"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "SvlCTCWLVpcPublicSubnet2NATGatewayE5536EC7"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2/DefaultRoute"
+   }
+  },
+  "SvlCTCWLVpcIGW121204F9": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "OpensearchServerlessStack/SvlCTCWLVpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/IGW"
+   }
+  },
+  "SvlCTCWLVpcVPCGWEF2E20E7": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "VpcId": {
+     "Ref": "SvlCTCWLVpcEDC545C8"
+    },
+    "InternetGatewayId": {
+     "Ref": "SvlCTCWLVpcIGW121204F9"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLVpc/VPCGW"
+   }
+  },
+  "SvlCTCWLOpenSearchSecGrp1FF757AC": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "OpensearchServerlessStack/SvlCTCWLOpenSearchSecGrp",
+    "GroupName": "SvlCTCWLSecGrp",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "from 0.0.0.0/0:80",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
+     },
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "from 0.0.0.0/0:443",
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     }
+    ],
+    "VpcId": {
+     "Ref": "SvlCTCWLVpcEDC545C8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLOpenSearchSecGrp/Resource"
+   }
+  },
+  "SvlCTCWLEndpoint": {
+   "Type": "AWS::OpenSearchServerless::VpcEndpoint",
+   "Properties": {
+    "Name": "svlctcwlendpoint",
+    "SubnetIds": [
+     {
+      "Ref": "SvlCTCWLVpcPublicSubnet1Subnet002FE673"
+     },
+     {
+      "Ref": "SvlCTCWLVpcPublicSubnet2SubnetA8905795"
+     }
+    ],
+    "VpcId": {
+     "Ref": "SvlCTCWLVpcEDC545C8"
+    },
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "SvlCTCWLOpenSearchSecGrp1FF757AC",
+       "GroupId"
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLEndpoint"
+   }
+  },
+  "SvlCTCWLNetwork": {
+   "Type": "AWS::OpenSearchServerless::SecurityPolicy",
+   "Properties": {
+    "Policy": {
+     "Fn::Join": [
+      "",
+      [
+       "[{\"Description\":\"Endpoint access for Lambda and for random querying\",\"SourceVPCEs\":[\"",
+       {
+        "Fn::GetAtt": [
+         "SvlCTCWLEndpoint",
+         "Id"
+        ]
+       },
+       "\"],\"Rules\":[{\"ResourceType\":\"collection\",\"Resource\":[\"collection/ctcollection\"]}],\"AllowFromPublic\":false},{\"Description\":\"Dashboards access\",\"AllowFromPublic\":true,\"Rules\":[{\"ResourceType\":\"dashboard\",\"Resource\":[\"collection/ctcollection\"]}]}]"
+      ]
+     ]
+    },
+    "Description": "Open access for ctcollection",
+    "Name": "svlctcwlnetwork",
+    "Type": "network"
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLNetwork"
+   }
+  },
+  "SvlCTCWLEncryption": {
+   "Type": "AWS::OpenSearchServerless::SecurityPolicy",
+   "Properties": {
+    "Policy": "{\"Rules\":[{\"ResourceType\":\"collection\",\"Resource\":[\"collection/ctcollection\"]}],\"AWSOwnedKey\":true}",
+    "Description": "AWS Owned key policy for {COLLECTION_NAME}",
+    "Name": "svlctcwlencryption",
+    "Type": "encryption"
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLEncryption"
+   }
+  },
+  "ctcollection": {
+   "Type": "AWS::OpenSearchServerless::Collection",
+   "Properties": {
+    "Name": "ctcollection",
+    "Type": "TIMESERIES"
+   },
+   "DependsOn": [
+    "SvlCTCWLEncryption"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/ctcollection"
+   }
+  },
+  "Boto3LambdaLayer1677E1BB": {
+   "Type": "AWS::Lambda::LayerVersion",
+   "Properties": {
+    "Content": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "7daba06772b79e254ae60e3a7798f8930ce076aeb9abd4506bbae58c238c8ff0.zip"
+    },
+    "CompatibleRuntimes": [
+     "python3.9"
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/Boto3LambdaLayer/Resource",
+    "aws:asset:path": "asset.7daba06772b79e254ae60e3a7798f8930ce076aeb9abd4506bbae58c238c8ff0",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Content"
+   }
+  },
+  "buildosclientandbulkingestlogeventshandlerServiceRoleB82FF874": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     },
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "DependsOn": [
+    "SvlCTCWLVpcPrivateSubnet1DefaultRoute75082C4F",
+    "SvlCTCWLVpcPrivateSubnet1RouteTableAssociationE109145C",
+    "SvlCTCWLVpcPrivateSubnet2DefaultRoute44D1CC81",
+    "SvlCTCWLVpcPrivateSubnet2RouteTableAssociation464D38AA"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/ServiceRole/Resource"
+   }
+  },
+  "buildosclientandbulkingestlogeventshandlerServiceRoleDefaultPolicy6616DC42": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "aoss:*",
+        "logs:*"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "buildosclientandbulkingestlogeventshandlerServiceRoleDefaultPolicy6616DC42",
+    "Roles": [
+     {
+      "Ref": "buildosclientandbulkingestlogeventshandlerServiceRoleB82FF874"
+     }
+    ]
+   },
+   "DependsOn": [
+    "SvlCTCWLVpcPrivateSubnet1DefaultRoute75082C4F",
+    "SvlCTCWLVpcPrivateSubnet1RouteTableAssociationE109145C",
+    "SvlCTCWLVpcPrivateSubnet2DefaultRoute44D1CC81",
+    "SvlCTCWLVpcPrivateSubnet2RouteTableAssociation464D38AA"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "buildosclientandbulkingestlogeventshandlerSecurityGroup080776F2": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Automatic security group for Lambda Function OpensearchServerlessStackbuildosclientandbulkingestlogeventshandler631E7489",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "SvlCTCWLVpcEDC545C8"
+    }
+   },
+   "DependsOn": [
+    "SvlCTCWLVpcPrivateSubnet1DefaultRoute75082C4F",
+    "SvlCTCWLVpcPrivateSubnet1RouteTableAssociationE109145C",
+    "SvlCTCWLVpcPrivateSubnet2DefaultRoute44D1CC81",
+    "SvlCTCWLVpcPrivateSubnet2RouteTableAssociation464D38AA"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/SecurityGroup/Resource"
+   }
+  },
+  "buildosclientandbulkingestlogeventshandler8B9C1AD7": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "f53751f702d501dfddb29f0214e4565aba378c5d178b6510a6dd3f4e8eda8994.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "buildosclientandbulkingestlogeventshandlerServiceRoleB82FF874",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "COLLECTION_ENDPOINT": {
+       "Fn::GetAtt": [
+        "ctcollection",
+        "CollectionEndpoint"
+       ]
+      },
+      "REGION": {
+       "Ref": "AWS::Region"
+      }
+     }
+    },
+    "FunctionName": "build_os_client_and_bulk_ingest_logevents_handler",
+    "Handler": "index.handler",
+    "Layers": [
+     {
+      "Ref": "Boto3LambdaLayer1677E1BB"
+     }
+    ],
+    "MemorySize": 1024,
+    "Runtime": "python3.9",
+    "Timeout": 300,
+    "VpcConfig": {
+     "SecurityGroupIds": [
+      {
+       "Fn::GetAtt": [
+        "buildosclientandbulkingestlogeventshandlerSecurityGroup080776F2",
+        "GroupId"
+       ]
+      }
+     ],
+     "SubnetIds": [
+      {
+       "Ref": "SvlCTCWLVpcPrivateSubnet1SubnetB4F9D598"
+      },
+      {
+       "Ref": "SvlCTCWLVpcPrivateSubnet2SubnetF8DAF71A"
+      }
+     ]
+    }
+   },
+   "DependsOn": [
+    "buildosclientandbulkingestlogeventshandlerServiceRoleDefaultPolicy6616DC42",
+    "buildosclientandbulkingestlogeventshandlerServiceRoleB82FF874",
+    "SvlCTCWLVpcPrivateSubnet1DefaultRoute75082C4F",
+    "SvlCTCWLVpcPrivateSubnet1RouteTableAssociationE109145C",
+    "SvlCTCWLVpcPrivateSubnet2DefaultRoute44D1CC81",
+    "SvlCTCWLVpcPrivateSubnet2RouteTableAssociation464D38AA"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/Resource",
+    "aws:asset:path": "asset.f53751f702d501dfddb29f0214e4565aba378c5d178b6510a6dd3f4e8eda8994",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "SvlCTCWLData": {
+   "Type": "AWS::OpenSearchServerless::AccessPolicy",
+   "Properties": {
+    "Description": "Data access for ctcollection",
+    "Name": "svlctcwldata",
+    "Policy": {
+     "Fn::Join": [
+      "",
+      [
+       "[\n  {\n    \"Description\": \"Endpoint access for Lambda and for random querying\",\n    \"Rules\":[\n        {\n          \"ResourceType\":\"collection\",\n          \"Resource\":[\"collection/ctcollection\"],\n          \"Permission\":[\"aoss:*\"]\n        },\n        {\n          \"ResourceType\":\"index\",\n          \"Resource\":[\"index/*/*\"],\n          \"Permission\":[\"aoss:*\"]\n        }\n    ],\n    \"Principal\":[\"arn:aws:iam::147228461610:user/admin\", \"",
+       {
+        "Fn::GetAtt": [
+         "buildosclientandbulkingestlogeventshandlerServiceRoleB82FF874",
+         "Arn"
+        ]
+       },
+       "\"]\n  }\n]\n"
+      ]
+     ]
+    },
+    "Type": "data"
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLData"
+   }
+  },
+  "SvlCTCWLLogGroup4141E51A": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "handler/svl_cloudtrail_logs",
+    "RetentionInDays": 3
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLLogGroup/Resource"
+   }
+  },
+  "SvlCTCWLTrailS3A2FF80E5": {
+   "Type": "AWS::S3::Bucket",
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLTrail/S3/Resource"
+   }
+  },
+  "SvlCTCWLTrailS3PolicyD077EF4C": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "SvlCTCWLTrailS3A2FF80E5"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "SvlCTCWLTrailS3A2FF80E5",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "SvlCTCWLTrailS3A2FF80E5",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "s3:GetBucketAcl",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "cloudtrail.amazonaws.com"
+       },
+       "Resource": {
+        "Fn::GetAtt": [
+         "SvlCTCWLTrailS3A2FF80E5",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "s3:PutObject",
+       "Condition": {
+        "StringEquals": {
+         "s3:x-amz-acl": "bucket-owner-full-control"
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "cloudtrail.amazonaws.com"
+       },
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::GetAtt": [
+            "SvlCTCWLTrailS3A2FF80E5",
+            "Arn"
+           ]
+          },
+          "/AWSLogs/",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          "/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLTrail/S3/Policy/Resource"
+   }
+  },
+  "SvlCTCWLTrailLogsRole6FC92938": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "cloudtrail.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLTrail/LogsRole/Resource"
+   }
+  },
+  "SvlCTCWLTrailLogsRoleDefaultPolicy4E2CBC0E": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "SvlCTCWLLogGroup4141E51A",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "SvlCTCWLTrailLogsRoleDefaultPolicy4E2CBC0E",
+    "Roles": [
+     {
+      "Ref": "SvlCTCWLTrailLogsRole6FC92938"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLTrail/LogsRole/DefaultPolicy/Resource"
+   }
+  },
+  "SvlCTCWLTrail9134DD52": {
+   "Type": "AWS::CloudTrail::Trail",
+   "Properties": {
+    "IsLogging": true,
+    "S3BucketName": {
+     "Ref": "SvlCTCWLTrailS3A2FF80E5"
+    },
+    "CloudWatchLogsLogGroupArn": {
+     "Fn::GetAtt": [
+      "SvlCTCWLLogGroup4141E51A",
+      "Arn"
+     ]
+    },
+    "CloudWatchLogsRoleArn": {
+     "Fn::GetAtt": [
+      "SvlCTCWLTrailLogsRole6FC92938",
+      "Arn"
+     ]
+    },
+    "EnableLogFileValidation": true,
+    "EventSelectors": [],
+    "IncludeGlobalServiceEvents": true,
+    "IsMultiRegionTrail": true
+   },
+   "DependsOn": [
+    "SvlCTCWLTrailLogsRoleDefaultPolicy4E2CBC0E",
+    "SvlCTCWLTrailLogsRole6FC92938",
+    "SvlCTCWLTrailS3PolicyD077EF4C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLTrail/Resource"
+   }
+  },
+  "SvlCTCWLSubFilterCanInvokeLambdaB6DE1E09": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "buildosclientandbulkingestlogeventshandler8B9C1AD7",
+      "Arn"
+     ]
+    },
+    "Principal": "logs.amazonaws.com",
+    "SourceArn": {
+     "Fn::GetAtt": [
+      "SvlCTCWLLogGroup4141E51A",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLSubFilter/CanInvokeLambda"
+   }
+  },
+  "SvlCTCWLSubFilter197E395B": {
+   "Type": "AWS::Logs::SubscriptionFilter",
+   "Properties": {
+    "DestinationArn": {
+     "Fn::GetAtt": [
+      "buildosclientandbulkingestlogeventshandler8B9C1AD7",
+      "Arn"
+     ]
+    },
+    "FilterPattern": "",
+    "LogGroupName": {
+     "Ref": "SvlCTCWLLogGroup4141E51A"
+    }
+   },
+   "DependsOn": [
+    "SvlCTCWLSubFilterCanInvokeLambdaB6DE1E09"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/SvlCTCWLSubFilter/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11S0U7DMAz8lr1nAQ2JiccyAUKaULVNe53S1GxmaVLFDqiq+u8k7dYOnu58OacXuwu5XMr7mfqhuS7Pc4OFbLes9FlE6dCCXsh2X2ux+rT7fCXyUBjU21BY4KRNbOMCw04VBiZ90jIip1ExOjuaE3l5zxN8KH5TDD+qEbnH70ini98tg4/8ahiSXKqMY9ZTBZbFFnTwyM2bd6HuM9wKnXA1WALl9YnAf4M3QCTbdFutX2xZO7R825a7+NL+cytnDOhr9kzr2DmcdsKoqiiVbNeqAb8HTxfXn/o12LH9lufgK6Rk6QQ9HBQRMMksQaxl+xz0GfhZEYiBpqYLG2AKeVt3AlUl240bltHj5Byju2McwNodx4mNPE6ftMc6BX1FExdwWeo/tRPauFCyV2hku0uQjD3pOrEBcsFrEP2T4m91RHvsE10P+unaErmfQd7wydm7B/kkH2dfhDj3wTJWIDcD/gLwKEGBrgIAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "OpensearchServerlessStack/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-2"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

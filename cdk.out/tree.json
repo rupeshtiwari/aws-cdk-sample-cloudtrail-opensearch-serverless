@@ -1,0 +1,1547 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "OpensearchServerlessStack": {
+        "id": "OpensearchServerlessStack",
+        "path": "OpensearchServerlessStack",
+        "children": {
+          "SvlCTCWLVpc": {
+            "id": "SvlCTCWLVpc",
+            "path": "OpensearchServerlessStack/SvlCTCWLVpc",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "OpensearchServerlessStack/SvlCTCWLVpc/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
+                  "aws:cdk:cloudformation:props": {
+                    "cidrBlock": "10.0.0.0/16",
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "instanceTenancy": "default",
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "OpensearchServerlessStack/SvlCTCWLVpc"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnVPC",
+                  "version": "2.77.0"
+                }
+              },
+              "PublicSubnet1": {
+                "id": "PublicSubnet1",
+                "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "SvlCTCWLVpcEDC545C8"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.0.0/18",
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "SvlCTCWLVpcEDC545C8"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "SvlCTCWLVpcPublicSubnet1RouteTable1730BCFB"
+                        },
+                        "subnetId": {
+                          "Ref": "SvlCTCWLVpcPublicSubnet1Subnet002FE673"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "SvlCTCWLVpcPublicSubnet1RouteTable1730BCFB"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "SvlCTCWLVpcIGW121204F9"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "EIP": {
+                    "id": "EIP",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/EIP",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::EIP",
+                      "aws:cdk:cloudformation:props": {
+                        "domain": "vpc",
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnEIP",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "NATGateway": {
+                    "id": "NATGateway",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/NATGateway",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::NatGateway",
+                      "aws:cdk:cloudformation:props": {
+                        "subnetId": {
+                          "Ref": "SvlCTCWLVpcPublicSubnet1Subnet002FE673"
+                        },
+                        "allocationId": {
+                          "Fn::GetAtt": [
+                            "SvlCTCWLVpcPublicSubnet1EIPC2DE3BD0",
+                            "AllocationId"
+                          ]
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnNatGateway",
+                      "version": "2.77.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PublicSubnet",
+                  "version": "2.77.0"
+                }
+              },
+              "PublicSubnet2": {
+                "id": "PublicSubnet2",
+                "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "SvlCTCWLVpcEDC545C8"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            1,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.64.0/18",
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "SvlCTCWLVpcEDC545C8"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "SvlCTCWLVpcPublicSubnet2RouteTable612AEFE7"
+                        },
+                        "subnetId": {
+                          "Ref": "SvlCTCWLVpcPublicSubnet2SubnetA8905795"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "SvlCTCWLVpcPublicSubnet2RouteTable612AEFE7"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "SvlCTCWLVpcIGW121204F9"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "EIP": {
+                    "id": "EIP",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/EIP",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::EIP",
+                      "aws:cdk:cloudformation:props": {
+                        "domain": "vpc",
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnEIP",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "NATGateway": {
+                    "id": "NATGateway",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/NATGateway",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::NatGateway",
+                      "aws:cdk:cloudformation:props": {
+                        "subnetId": {
+                          "Ref": "SvlCTCWLVpcPublicSubnet2SubnetA8905795"
+                        },
+                        "allocationId": {
+                          "Fn::GetAtt": [
+                            "SvlCTCWLVpcPublicSubnet2EIPEF505E6B",
+                            "AllocationId"
+                          ]
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnNatGateway",
+                      "version": "2.77.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PublicSubnet",
+                  "version": "2.77.0"
+                }
+              },
+              "PrivateSubnet1": {
+                "id": "PrivateSubnet1",
+                "path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "SvlCTCWLVpcEDC545C8"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.128.0/18",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "SvlCTCWLVpcEDC545C8"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "SvlCTCWLVpcPrivateSubnet1RouteTableB43422D9"
+                        },
+                        "subnetId": {
+                          "Ref": "SvlCTCWLVpcPrivateSubnet1SubnetB4F9D598"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "SvlCTCWLVpcPrivateSubnet1RouteTableB43422D9"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "natGatewayId": {
+                          "Ref": "SvlCTCWLVpcPublicSubnet1NATGateway49EC2790"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                      "version": "2.77.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PrivateSubnet",
+                  "version": "2.77.0"
+                }
+              },
+              "PrivateSubnet2": {
+                "id": "PrivateSubnet2",
+                "path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "SvlCTCWLVpcEDC545C8"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            1,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.192.0/18",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "SvlCTCWLVpcEDC545C8"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "SvlCTCWLVpcPrivateSubnet2RouteTable013CCA08"
+                        },
+                        "subnetId": {
+                          "Ref": "SvlCTCWLVpcPrivateSubnet2SubnetF8DAF71A"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "SvlCTCWLVpcPrivateSubnet2RouteTable013CCA08"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "natGatewayId": {
+                          "Ref": "SvlCTCWLVpcPublicSubnet2NATGatewayE5536EC7"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                      "version": "2.77.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PrivateSubnet",
+                  "version": "2.77.0"
+                }
+              },
+              "IGW": {
+                "id": "IGW",
+                "path": "OpensearchServerlessStack/SvlCTCWLVpc/IGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "OpensearchServerlessStack/SvlCTCWLVpc"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnInternetGateway",
+                  "version": "2.77.0"
+                }
+              },
+              "VPCGW": {
+                "id": "VPCGW",
+                "path": "OpensearchServerlessStack/SvlCTCWLVpc/VPCGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
+                  "aws:cdk:cloudformation:props": {
+                    "vpcId": {
+                      "Ref": "SvlCTCWLVpcEDC545C8"
+                    },
+                    "internetGatewayId": {
+                      "Ref": "SvlCTCWLVpcIGW121204F9"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnVPCGatewayAttachment",
+                  "version": "2.77.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.Vpc",
+              "version": "2.77.0"
+            }
+          },
+          "SvlCTCWLOpenSearchSecGrp": {
+            "id": "SvlCTCWLOpenSearchSecGrp",
+            "path": "OpensearchServerlessStack/SvlCTCWLOpenSearchSecGrp",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "OpensearchServerlessStack/SvlCTCWLOpenSearchSecGrp/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "OpensearchServerlessStack/SvlCTCWLOpenSearchSecGrp",
+                    "groupName": "SvlCTCWLSecGrp",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 80,
+                        "toPort": 80,
+                        "description": "from 0.0.0.0/0:80"
+                      },
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 443,
+                        "toPort": 443,
+                        "description": "from 0.0.0.0/0:443"
+                      }
+                    ],
+                    "vpcId": {
+                      "Ref": "SvlCTCWLVpcEDC545C8"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.77.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.77.0"
+            }
+          },
+          "SvlCTCWLEndpoint": {
+            "id": "SvlCTCWLEndpoint",
+            "path": "OpensearchServerlessStack/SvlCTCWLEndpoint",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::OpenSearchServerless::VpcEndpoint",
+              "aws:cdk:cloudformation:props": {
+                "name": "svlctcwlendpoint",
+                "subnetIds": [
+                  {
+                    "Ref": "SvlCTCWLVpcPublicSubnet1Subnet002FE673"
+                  },
+                  {
+                    "Ref": "SvlCTCWLVpcPublicSubnet2SubnetA8905795"
+                  }
+                ],
+                "vpcId": {
+                  "Ref": "SvlCTCWLVpcEDC545C8"
+                },
+                "securityGroupIds": [
+                  {
+                    "Fn::GetAtt": [
+                      "SvlCTCWLOpenSearchSecGrp1FF757AC",
+                      "GroupId"
+                    ]
+                  }
+                ]
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_opensearchserverless.CfnVpcEndpoint",
+              "version": "2.77.0"
+            }
+          },
+          "SvlCTCWLNetwork": {
+            "id": "SvlCTCWLNetwork",
+            "path": "OpensearchServerlessStack/SvlCTCWLNetwork",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::OpenSearchServerless::SecurityPolicy",
+              "aws:cdk:cloudformation:props": {
+                "policy": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "[{\"Description\":\"Endpoint access for Lambda and for random querying\",\"SourceVPCEs\":[\"",
+                      {
+                        "Fn::GetAtt": [
+                          "SvlCTCWLEndpoint",
+                          "Id"
+                        ]
+                      },
+                      "\"],\"Rules\":[{\"ResourceType\":\"collection\",\"Resource\":[\"collection/ctcollection\"]}],\"AllowFromPublic\":false},{\"Description\":\"Dashboards access\",\"AllowFromPublic\":true,\"Rules\":[{\"ResourceType\":\"dashboard\",\"Resource\":[\"collection/ctcollection\"]}]}]"
+                    ]
+                  ]
+                },
+                "description": "Open access for ctcollection",
+                "name": "svlctcwlnetwork",
+                "type": "network"
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_opensearchserverless.CfnSecurityPolicy",
+              "version": "2.77.0"
+            }
+          },
+          "SvlCTCWLEncryption": {
+            "id": "SvlCTCWLEncryption",
+            "path": "OpensearchServerlessStack/SvlCTCWLEncryption",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::OpenSearchServerless::SecurityPolicy",
+              "aws:cdk:cloudformation:props": {
+                "policy": "{\"Rules\":[{\"ResourceType\":\"collection\",\"Resource\":[\"collection/ctcollection\"]}],\"AWSOwnedKey\":true}",
+                "description": "AWS Owned key policy for {COLLECTION_NAME}",
+                "name": "svlctcwlencryption",
+                "type": "encryption"
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_opensearchserverless.CfnSecurityPolicy",
+              "version": "2.77.0"
+            }
+          },
+          "ctcollection": {
+            "id": "ctcollection",
+            "path": "OpensearchServerlessStack/ctcollection",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::OpenSearchServerless::Collection",
+              "aws:cdk:cloudformation:props": {
+                "name": "ctcollection",
+                "type": "TIMESERIES"
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_opensearchserverless.CfnCollection",
+              "version": "2.77.0"
+            }
+          },
+          "Boto3LambdaLayer": {
+            "id": "Boto3LambdaLayer",
+            "path": "OpensearchServerlessStack/Boto3LambdaLayer",
+            "children": {
+              "Code": {
+                "id": "Code",
+                "path": "OpensearchServerlessStack/Boto3LambdaLayer/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "OpensearchServerlessStack/Boto3LambdaLayer/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.AssetStaging",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "OpensearchServerlessStack/Boto3LambdaLayer/Code/AssetBucket",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                      "version": "2.77.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                  "version": "2.77.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "OpensearchServerlessStack/Boto3LambdaLayer/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::LayerVersion",
+                  "aws:cdk:cloudformation:props": {
+                    "content": {
+                      "s3Bucket": {
+                        "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                      },
+                      "s3Key": "7daba06772b79e254ae60e3a7798f8930ce076aeb9abd4506bbae58c238c8ff0.zip"
+                    },
+                    "compatibleRuntimes": [
+                      "python3.9"
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnLayerVersion",
+                  "version": "2.77.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_lambda.LayerVersion",
+              "version": "2.77.0"
+            }
+          },
+          "build_os_client_and_bulk_ingest_logevents_handler": {
+            "id": "build_os_client_and_bulk_ingest_logevents_handler",
+            "path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/ServiceRole",
+                "children": {
+                  "ImportServiceRole": {
+                    "id": "ImportServiceRole",
+                    "path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/ServiceRole/ImportServiceRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          },
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/ServiceRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/ServiceRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "aoss:*",
+                                    "logs:*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": "*"
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "buildosclientandbulkingestlogeventshandlerServiceRoleDefaultPolicy6616DC42",
+                            "roles": [
+                              {
+                                "Ref": "buildosclientandbulkingestlogeventshandlerServiceRoleB82FF874"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                          "version": "2.77.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Policy",
+                      "version": "2.77.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.77.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.AssetStaging",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/Code/AssetBucket",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                      "version": "2.77.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                  "version": "2.77.0"
+                }
+              },
+              "SecurityGroup": {
+                "id": "SecurityGroup",
+                "path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/SecurityGroup",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/SecurityGroup/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                      "aws:cdk:cloudformation:props": {
+                        "groupDescription": "Automatic security group for Lambda Function OpensearchServerlessStackbuildosclientandbulkingestlogeventshandler631E7489",
+                        "securityGroupEgress": [
+                          {
+                            "cidrIp": "0.0.0.0/0",
+                            "description": "Allow all outbound traffic by default",
+                            "ipProtocol": "-1"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "SvlCTCWLVpcEDC545C8"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                      "version": "2.77.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+                  "version": "2.77.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                      },
+                      "s3Key": "f53751f702d501dfddb29f0214e4565aba378c5d178b6510a6dd3f4e8eda8994.zip"
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "buildosclientandbulkingestlogeventshandlerServiceRoleB82FF874",
+                        "Arn"
+                      ]
+                    },
+                    "environment": {
+                      "variables": {
+                        "COLLECTION_ENDPOINT": {
+                          "Fn::GetAtt": [
+                            "ctcollection",
+                            "CollectionEndpoint"
+                          ]
+                        },
+                        "REGION": {
+                          "Ref": "AWS::Region"
+                        }
+                      }
+                    },
+                    "functionName": "build_os_client_and_bulk_ingest_logevents_handler",
+                    "handler": "index.handler",
+                    "layers": [
+                      {
+                        "Ref": "Boto3LambdaLayer1677E1BB"
+                      }
+                    ],
+                    "memorySize": 1024,
+                    "runtime": "python3.9",
+                    "timeout": 300,
+                    "vpcConfig": {
+                      "subnetIds": [
+                        {
+                          "Ref": "SvlCTCWLVpcPrivateSubnet1SubnetB4F9D598"
+                        },
+                        {
+                          "Ref": "SvlCTCWLVpcPrivateSubnet2SubnetF8DAF71A"
+                        }
+                      ],
+                      "securityGroupIds": [
+                        {
+                          "Fn::GetAtt": [
+                            "buildosclientandbulkingestlogeventshandlerSecurityGroup080776F2",
+                            "GroupId"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                  "version": "2.77.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_lambda.Function",
+              "version": "2.77.0"
+            }
+          },
+          "SvlCTCWLData": {
+            "id": "SvlCTCWLData",
+            "path": "OpensearchServerlessStack/SvlCTCWLData",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::OpenSearchServerless::AccessPolicy",
+              "aws:cdk:cloudformation:props": {
+                "description": "Data access for ctcollection",
+                "name": "svlctcwldata",
+                "policy": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "[\n  {\n    \"Description\": \"Endpoint access for Lambda and for random querying\",\n    \"Rules\":[\n        {\n          \"ResourceType\":\"collection\",\n          \"Resource\":[\"collection/ctcollection\"],\n          \"Permission\":[\"aoss:*\"]\n        },\n        {\n          \"ResourceType\":\"index\",\n          \"Resource\":[\"index/*/*\"],\n          \"Permission\":[\"aoss:*\"]\n        }\n    ],\n    \"Principal\":[\"arn:aws:iam::147228461610:user/admin\", \"",
+                      {
+                        "Fn::GetAtt": [
+                          "buildosclientandbulkingestlogeventshandlerServiceRoleB82FF874",
+                          "Arn"
+                        ]
+                      },
+                      "\"]\n  }\n]\n"
+                    ]
+                  ]
+                },
+                "type": "data"
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_opensearchserverless.CfnAccessPolicy",
+              "version": "2.77.0"
+            }
+          },
+          "SvlCTCWLLogGroup": {
+            "id": "SvlCTCWLLogGroup",
+            "path": "OpensearchServerlessStack/SvlCTCWLLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "OpensearchServerlessStack/SvlCTCWLLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "handler/svl_cloudtrail_logs",
+                    "retentionInDays": 3
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.77.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.77.0"
+            }
+          },
+          "SvlCTCWLTrail": {
+            "id": "SvlCTCWLTrail",
+            "path": "OpensearchServerlessStack/SvlCTCWLTrail",
+            "children": {
+              "S3": {
+                "id": "S3",
+                "path": "OpensearchServerlessStack/SvlCTCWLTrail/S3",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "OpensearchServerlessStack/SvlCTCWLTrail/S3/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                      "aws:cdk:cloudformation:props": {}
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "Policy": {
+                    "id": "Policy",
+                    "path": "OpensearchServerlessStack/SvlCTCWLTrail/S3/Policy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "OpensearchServerlessStack/SvlCTCWLTrail/S3/Policy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
+                          "aws:cdk:cloudformation:props": {
+                            "bucket": {
+                              "Ref": "SvlCTCWLTrailS3A2FF80E5"
+                            },
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "s3:*",
+                                  "Condition": {
+                                    "Bool": {
+                                      "aws:SecureTransport": "false"
+                                    }
+                                  },
+                                  "Effect": "Deny",
+                                  "Principal": {
+                                    "AWS": "*"
+                                  },
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "SvlCTCWLTrailS3A2FF80E5",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "SvlCTCWLTrailS3A2FF80E5",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": "s3:GetBucketAcl",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "cloudtrail.amazonaws.com"
+                                  },
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "SvlCTCWLTrailS3A2FF80E5",
+                                      "Arn"
+                                    ]
+                                  }
+                                },
+                                {
+                                  "Action": "s3:PutObject",
+                                  "Condition": {
+                                    "StringEquals": {
+                                      "s3:x-amz-acl": "bucket-owner-full-control"
+                                    }
+                                  },
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "cloudtrail.amazonaws.com"
+                                  },
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        {
+                                          "Fn::GetAtt": [
+                                            "SvlCTCWLTrailS3A2FF80E5",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/AWSLogs/",
+                                        {
+                                          "Ref": "AWS::AccountId"
+                                        },
+                                        "/*"
+                                      ]
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.CfnBucketPolicy",
+                          "version": "2.77.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketPolicy",
+                      "version": "2.77.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.Bucket",
+                  "version": "2.77.0"
+                }
+              },
+              "LogsRole": {
+                "id": "LogsRole",
+                "path": "OpensearchServerlessStack/SvlCTCWLTrail/LogsRole",
+                "children": {
+                  "ImportLogsRole": {
+                    "id": "ImportLogsRole",
+                    "path": "OpensearchServerlessStack/SvlCTCWLTrail/LogsRole/ImportLogsRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "OpensearchServerlessStack/SvlCTCWLTrail/LogsRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "cloudtrail.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.77.0"
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "OpensearchServerlessStack/SvlCTCWLTrail/LogsRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "OpensearchServerlessStack/SvlCTCWLTrail/LogsRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "logs:CreateLogStream",
+                                    "logs:PutLogEvents"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "SvlCTCWLLogGroup4141E51A",
+                                      "Arn"
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "SvlCTCWLTrailLogsRoleDefaultPolicy4E2CBC0E",
+                            "roles": [
+                              {
+                                "Ref": "SvlCTCWLTrailLogsRole6FC92938"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                          "version": "2.77.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Policy",
+                      "version": "2.77.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.77.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "OpensearchServerlessStack/SvlCTCWLTrail/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudTrail::Trail",
+                  "aws:cdk:cloudformation:props": {
+                    "isLogging": true,
+                    "s3BucketName": {
+                      "Ref": "SvlCTCWLTrailS3A2FF80E5"
+                    },
+                    "cloudWatchLogsLogGroupArn": {
+                      "Fn::GetAtt": [
+                        "SvlCTCWLLogGroup4141E51A",
+                        "Arn"
+                      ]
+                    },
+                    "cloudWatchLogsRoleArn": {
+                      "Fn::GetAtt": [
+                        "SvlCTCWLTrailLogsRole6FC92938",
+                        "Arn"
+                      ]
+                    },
+                    "enableLogFileValidation": true,
+                    "eventSelectors": [],
+                    "includeGlobalServiceEvents": true,
+                    "isMultiRegionTrail": true
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudtrail.CfnTrail",
+                  "version": "2.77.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudtrail.Trail",
+              "version": "2.77.0"
+            }
+          },
+          "SvlCTCWLSubFilter": {
+            "id": "SvlCTCWLSubFilter",
+            "path": "OpensearchServerlessStack/SvlCTCWLSubFilter",
+            "children": {
+              "CanInvokeLambda": {
+                "id": "CanInvokeLambda",
+                "path": "OpensearchServerlessStack/SvlCTCWLSubFilter/CanInvokeLambda",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                  "aws:cdk:cloudformation:props": {
+                    "action": "lambda:InvokeFunction",
+                    "functionName": {
+                      "Fn::GetAtt": [
+                        "buildosclientandbulkingestlogeventshandler8B9C1AD7",
+                        "Arn"
+                      ]
+                    },
+                    "principal": "logs.amazonaws.com",
+                    "sourceArn": {
+                      "Fn::GetAtt": [
+                        "SvlCTCWLLogGroup4141E51A",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                  "version": "2.77.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "OpensearchServerlessStack/SvlCTCWLSubFilter/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::SubscriptionFilter",
+                  "aws:cdk:cloudformation:props": {
+                    "destinationArn": {
+                      "Fn::GetAtt": [
+                        "buildosclientandbulkingestlogeventshandler8B9C1AD7",
+                        "Arn"
+                      ]
+                    },
+                    "filterPattern": "",
+                    "logGroupName": {
+                      "Ref": "SvlCTCWLLogGroup4141E51A"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnSubscriptionFilter",
+                  "version": "2.77.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.SubscriptionFilter",
+              "version": "2.77.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "OpensearchServerlessStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "OpensearchServerlessStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.77.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "OpensearchServerlessStack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.77.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.2.9"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "OpensearchServerlessStack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.77.0"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "OpensearchServerlessStack/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.77.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.77.0"
+        }
+      },
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.2.9"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.77.0"
+    }
+  }
+}

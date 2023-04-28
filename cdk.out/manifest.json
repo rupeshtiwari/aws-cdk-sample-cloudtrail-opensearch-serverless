@@ -1,0 +1,322 @@
+{
+  "version": "31.0.0",
+  "artifacts": {
+    "OpensearchServerlessStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "OpensearchServerlessStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "OpensearchServerlessStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "OpensearchServerlessStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6f9daa6ea76d8b4c54b6acea22645adfcdf6db724419c9e35328911351424c71.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "OpensearchServerlessStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "OpensearchServerlessStack.assets"
+      ],
+      "metadata": {
+        "/OpensearchServerlessStack/SvlCTCWLVpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcEDC545C8"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPublicSubnet1Subnet002FE673"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPublicSubnet1RouteTable1730BCFB"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPublicSubnet1RouteTableAssociation7382A5B7"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPublicSubnet1DefaultRouteE2F6C5C1"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPublicSubnet1EIPC2DE3BD0"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPublicSubnet1NATGateway49EC2790"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPublicSubnet2SubnetA8905795"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPublicSubnet2RouteTable612AEFE7"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPublicSubnet2RouteTableAssociationCB6ABAC3"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPublicSubnet2DefaultRouteD17E170C"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPublicSubnet2EIPEF505E6B"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PublicSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPublicSubnet2NATGatewayE5536EC7"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPrivateSubnet1SubnetB4F9D598"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPrivateSubnet1RouteTableB43422D9"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPrivateSubnet1RouteTableAssociationE109145C"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPrivateSubnet1DefaultRoute75082C4F"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPrivateSubnet2SubnetF8DAF71A"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPrivateSubnet2RouteTable013CCA08"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPrivateSubnet2RouteTableAssociation464D38AA"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcPrivateSubnet2DefaultRoute44D1CC81"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcIGW121204F9"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLVpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLVpcVPCGWEF2E20E7"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLOpenSearchSecGrp/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLOpenSearchSecGrp1FF757AC"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLEndpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLEndpoint"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLNetwork": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLNetwork"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLEncryption": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLEncryption"
+          }
+        ],
+        "/OpensearchServerlessStack/ctcollection": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ctcollection"
+          }
+        ],
+        "/OpensearchServerlessStack/Boto3LambdaLayer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Boto3LambdaLayer1677E1BB"
+          }
+        ],
+        "/OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "buildosclientandbulkingestlogeventshandlerServiceRoleB82FF874"
+          }
+        ],
+        "/OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "buildosclientandbulkingestlogeventshandlerServiceRoleDefaultPolicy6616DC42"
+          }
+        ],
+        "/OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "buildosclientandbulkingestlogeventshandlerSecurityGroup080776F2"
+          }
+        ],
+        "/OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "buildosclientandbulkingestlogeventshandler8B9C1AD7"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLData": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLData"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLLogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLLogGroup4141E51A"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLTrail/S3/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLTrailS3A2FF80E5"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLTrail/S3/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLTrailS3PolicyD077EF4C"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLTrail/LogsRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLTrailLogsRole6FC92938"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLTrail/LogsRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLTrailLogsRoleDefaultPolicy4E2CBC0E"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLTrail/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLTrail9134DD52"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLSubFilter/CanInvokeLambda": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLSubFilterCanInvokeLambdaB6DE1E09"
+          }
+        ],
+        "/OpensearchServerlessStack/SvlCTCWLSubFilter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SvlCTCWLSubFilter197E395B"
+          }
+        ],
+        "/OpensearchServerlessStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/OpensearchServerlessStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/OpensearchServerlessStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/OpensearchServerlessStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "OpensearchServerlessStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
