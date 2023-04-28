@@ -24,6 +24,8 @@ This example demonstrates setting up a OpenSearch Serverless, CloudTrail and Clo
 
 ### Security
 
+Amazon OpenSearch API is only within VPC and the OpenSearch dashboard is allowed for public so you do not need to run Nginx.
+
 You can change the CloudTrail group name, Amazon OpenSearch collection name, CloudWatch retention. Below are default values. Here is the documentation of [Amazon OpenSearch Serverless Security](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-security.html) to read for you.
 
 ```
@@ -32,6 +34,8 @@ COLLECTION_NAME = "ctcollection"
 ```
 
 Currently we are using TLS with AWS encryption key, read more about [Amazon OpenSearch Serverless encryption](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-encryption.html).
+
+
 
 Once deployed, navigate to Amazon OpenSearch service console, select collections in Serverless section, select `ctcollection` and select dashboard URL, create your own Index pattern and explore the logs.
 

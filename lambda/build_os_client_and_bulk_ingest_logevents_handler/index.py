@@ -44,10 +44,9 @@ def handler(event, context):
             use_ssl=True,
             verify_certs=False,
             connection_class=RequestsHttpConnection,
-            timeout=300,
+            timeout=300, 
         )
-        os_client.indices.create(INDEX_NAME)
-
+         
         cw_data = str(event["awslogs"]["data"])
         cw_logs = gzip.GzipFile(
             fileobj=BytesIO(base64.b64decode(cw_data, validate=True))
