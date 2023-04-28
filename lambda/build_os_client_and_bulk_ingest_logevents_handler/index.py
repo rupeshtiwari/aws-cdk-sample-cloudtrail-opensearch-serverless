@@ -1,7 +1,7 @@
-'''
+"""
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: MIT-0
-'''
+"""
 
 import base64
 import boto3
@@ -17,7 +17,8 @@ from requests_aws4auth import AWS4Auth
 
 from opensearchpy import OpenSearch, RequestsHttpConnection
 
-INDEX_NAME="cwl"
+INDEX_NAME = "cwl"
+
 
 # Lambda handler
 def handler(event, context):
@@ -69,7 +70,7 @@ def handler(event, context):
 
 def parse_and_send(os_client, cw_logs):
     # OpenSearch serverless using daily index automatically
-     
+
     bulk_body = ""
     for log_event in cw_logs["logEvents"]:
         bulk_body += f'{{"index": {{"_index": "{INDEX_NAME}"}} }}\n'
@@ -94,7 +95,7 @@ def transform(md, log_event):
     ret["@timestamp"] = datetime.fromtimestamp(
         log_event["timestamp"] / 1000
     ).isoformat()
-    ret["@message"] = log_event["message"]  ## Keep this?
+    ret["@message"] = log_event["message"]
     fields = json.loads(log_event["message"])
     for key, value in fields.items():
         ret[key] = value  ##TODO

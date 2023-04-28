@@ -13,12 +13,27 @@
 <!--END STABILITY BANNER-->
 
 ## Overview
+Do you want to stream [AWS CloudTrail logs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) to [Amazon OpenSearch Serverless](https://aws.amazon.com/opensearch-service/features/serverless/) and monitor it using [OpenSearch Dashboard](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/dashboards.html)? Then this CDK is for you!
 
-CDK example to create an [Amazon OpenSearch serverless](https://aws.amazon.com/opensearch-service/features/serverless/), [AWS Lambda](https://aws.amazon.com/pm/lambda), [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) and [AWS CloudTrail logs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) using Python.
+CDK example to create an [Amazon OpenSearch Serverless](https://aws.amazon.com/opensearch-service/features/serverless/), [AWS Lambda](https://aws.amazon.com/pm/lambda), [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) and [AWS CloudTrail logs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) using Python.
+
+![](docs/streaming%20cloudtrail%20in%20OpenSearch.png)
+_figure1.Architecture Diagram of CloudTrail log streaming to Amazon OpenSearch Serverless_
 
 This example demonstrates setting up a OpenSearch Serverless, CloudTrail and CloudWatch group to stream CloudTrail logs to OpenSearch Collection with Lambda and subscription filter using CDK.
 
-Once deployed, navigate to Amazon OpenSearch service console, select collections in serverless section, select `ctcollection` and select dashboard URL, create your own Index pattern and explore the logs.
+### Security
+
+You can change the CloudTrail group name, Amazon OpenSearch collection name, CloudWatch retention. Below are default values. Here is the documentation of [Amazon OpenSearch Serverless Security](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-security.html) to read for you.
+
+```
+LOG_GROUP_NAME = "handler/svl_cloudtrail_logs"
+COLLECTION_NAME = "ctcollection"
+```
+
+Currently we are using TLS with AWS encryption key, read more about [Amazon OpenSearch Serverless encryption](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-encryption.html).
+
+Once deployed, navigate to Amazon OpenSearch service console, select collections in Serverless section, select `ctcollection` and select dashboard URL, create your own Index pattern and explore the logs.
 
 ## Build and Deploy
 
