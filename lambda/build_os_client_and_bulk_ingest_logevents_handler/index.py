@@ -17,6 +17,7 @@ from requests_aws4auth import AWS4Auth
 
 from opensearchpy import OpenSearch, RequestsHttpConnection
 
+INDEX_NAME="cwl"
 
 # Lambda handler
 def handler(event, context):
@@ -44,6 +45,7 @@ def handler(event, context):
             connection_class=RequestsHttpConnection,
             timeout=300,
         )
+        os_client.indices.create(INDEX_NAME)
 
         cw_data = str(event["awslogs"]["data"])
         cw_logs = gzip.GzipFile(
@@ -59,17 +61,18 @@ def handler(event, context):
     except Exception as e:
         logging.exception("Failed to process CloudWatch data")
         response_status = "FAILED"
-        error_message = f"Error: {str(e)}. "
+        error_message = f"{response_status} Error: {str(e)}. "
+        print(error_message)
     finally:
         return "Succeeded"
 
 
 def parse_and_send(os_client, cw_logs):
     # OpenSearch serverless using daily index automatically
-    index_name = "cwl" 
+     
     bulk_body = ""
     for log_event in cw_logs["logEvents"]:
-        bulk_body += f'{{"index": {{"_index": "{index_name}"}} }}\n'
+        bulk_body += f'{{"index": {{"_index": "{INDEX_NAME}"}} }}\n'
         fields = transform(events_md(cw_logs), log_event)
         bulk_body += f"{json.dumps(fields)}\n"
     print(f"Sending {len(bulk_body)} characters to OpenSearch")

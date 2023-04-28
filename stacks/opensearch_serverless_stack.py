@@ -19,7 +19,7 @@ from aws_cdk.aws_s3_assets import Asset
 from constructs import Construct
 
 
-## Constants 
+## Constants
 LOG_GROUP_NAME = "handler/svl_cloudtrail_logs"
 COLLECTION_NAME = "ctcollection"
 CWL_RETENTION = cwl.RetentionDays.THREE_DAYS
@@ -85,7 +85,7 @@ class OpensearchServerlessStack(Stack):
             type="network",
             policy=network_policy,
         )
-
+        print("Network Policy attached to OpenSearch Collection", net.name)
         sec = opensearchserverless.CfnSecurityPolicy(
             self,
             "SvlCTCWLEncryption",
@@ -152,7 +152,7 @@ class OpensearchServerlessStack(Stack):
             description=f"Data access for {COLLECTION_NAME}",
             policy=dap,
         )
-
+        print("Data access for collection is created", dat.name)
         ################################################################################
         # CWL Log Group
         log_group = cwl.LogGroup(
@@ -171,6 +171,7 @@ class OpensearchServerlessStack(Stack):
             send_to_cloud_watch_logs=True,
             cloud_watch_log_group=log_group,
         )
+        print("CloudTrail is created", trail._physical_name)
 
         ################################################################################
         # Set up subscription filter
@@ -181,5 +182,7 @@ class OpensearchServerlessStack(Stack):
             destination=cwl_destinations.LambdaDestination(subscription_filter_lambda),
             filter_pattern=cwl.FilterPattern.all_events(),
         )
-
- 
+        print(
+            "Subscription Filter for CloudTrail is created",
+            subscription_filter._physical_name,
+        )

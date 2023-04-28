@@ -712,7 +712,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "f53751f702d501dfddb29f0214e4565aba378c5d178b6510a6dd3f4e8eda8994.zip"
+     "S3Key": "c03e15655fdda3c578bbd7cacb1eb3d0cbb44c0f5b654773687b61d00dfc3f05.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -772,7 +772,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "OpensearchServerlessStack/build_os_client_and_bulk_ingest_logevents_handler/Resource",
-    "aws:asset:path": "asset.f53751f702d501dfddb29f0214e4565aba378c5d178b6510a6dd3f4e8eda8994",
+    "aws:asset:path": "asset.c03e15655fdda3c578bbd7cacb1eb3d0cbb44c0f5b654773687b61d00dfc3f05",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
