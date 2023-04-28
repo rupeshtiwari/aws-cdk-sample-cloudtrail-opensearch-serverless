@@ -19,17 +19,12 @@ from aws_cdk.aws_s3_assets import Asset
 from constructs import Construct
 
 
+## Constants 
 LOG_GROUP_NAME = "handler/svl_cloudtrail_logs"
 COLLECTION_NAME = "ctcollection"
 CWL_RETENTION = cwl.RetentionDays.THREE_DAYS
-
-# Jump host settings: REMOVED, but comment in to deploy an instance in the vpc
-# EC2_KEY_NAME=''
-# EC2_INSTANCE_TYPE='t3.nano'
-
 ENCRYPTIONPOLICY = f"""{{"Rules":[{{"ResourceType":"collection","Resource":["collection/{COLLECTION_NAME}"]}}],"AWSOwnedKey":true}}"""
 NETWORKPOLICY = f"""[{{"Description":"Endpoint access for Lambda and for random querying","SourceVPCEs":["VPCENDPOINTID"],"Rules":[{{"ResourceType":"collection","Resource":["collection/{COLLECTION_NAME}"]}}],"AllowFromPublic":false}},{{"Description":"Dashboards access","AllowFromPublic":true,"Rules":[{{"ResourceType":"dashboard","Resource":["collection/{COLLECTION_NAME}"]}}]}}]"""
-# NETWORKPOLICY = '''[{"Description":"Endpoint access for Lambda and for random querying","SourceVPCEs":["VPCENDPOINTID"],"Rules":[{"ResourceType":"collection","Resource":["collection/oscollection"]}],"AllowFromPublic":false},{"Description":"Dashboards access","AllowFromPublic":true,"Rules":[{"ResourceType":"dashboard","Resource":["collection/oscollection"]}]}]'''
 DATAPOLICY = f"""[
   {{
     "Description": "Endpoint access for Lambda and for random querying",
@@ -187,26 +182,4 @@ class OpensearchServerlessStack(Stack):
             filter_pattern=cwl.FilterPattern.all_events(),
         )
 
-        ################################################################################
-        # Jump host within the VPC. Uncomment if desired
-        # amzn_linux = ec2.MachineImage.latest_amazon_linux(
-        #     generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
-        #     edition=ec2.AmazonLinuxEdition.STANDARD,
-        #     virtualization=ec2.AmazonLinuxVirt.HVM,
-        #     storage=ec2.AmazonLinuxStorage.GENERAL_PURPOSE
-        #     )
-        # # Instance Role and SSM Managed Policy
-        # role = iam.Role(self, "InstanceSSM", assumed_by=iam.ServicePrincipal("ec2.amazonaws.com"))
-        # role.add_managed_policy(iam.ManagedPolicy.from_aws_managed_policy_name("service-role/AmazonEC2RoleforSSM"))
-        # role.add_managed_policy(iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMManagedInstanceCore"))
-
-        # instance = ec2.Instance(self, 'JumpHost', instance_type=ec2.InstanceType(EC2_INSTANCE_TYPE),
-        #                         vpc=vpc,
-        #                         machine_image=amzn_linux,
-        #                         vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
-        #                         key_name=EC2_KEY_NAME,
-        #                         role=role,
-        #                         )
-        # instance.connections.allow_from_any_ipv4(ec2.Port.tcp(22), 'SSH')
-        # instance.connections.allow_from_any_ipv4(ec2.Port.tcp(443), 'HTTPS')
-        # instance.node.add_dependency(subscription_filter_lambda.role)
+ 
