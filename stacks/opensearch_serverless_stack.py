@@ -20,6 +20,7 @@ from constructs import Construct
 
 
 ## Constants
+ARN_IAM_USER = ""  # Input your IAM User ARN
 LOG_GROUP_NAME = "handler/svl_cloudtrail_logs"
 COLLECTION_NAME = "ctcollection"
 CWL_RETENTION = cwl.RetentionDays.THREE_DAYS
@@ -40,7 +41,7 @@ DATAPOLICY = f"""[
           "Permission":["aoss:*"]
         }}
     ],
-    "Principal":["arn:aws:iam::147228461610:user/admin", "LAMBDAROLEARN"]
+    "Principal":["{ARN_IAM_USER}", "LAMBDAROLEARN"]
   }}
 ]
 """

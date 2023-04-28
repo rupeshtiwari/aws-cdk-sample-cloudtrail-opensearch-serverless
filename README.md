@@ -13,6 +13,7 @@
 <!--END STABILITY BANNER-->
 
 ## Overview
+
 Do you want to stream [AWS CloudTrail logs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) to [Amazon OpenSearch Serverless](https://aws.amazon.com/opensearch-service/features/serverless/) and monitor it using [OpenSearch Dashboard](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/dashboards.html)? Then this CDK is for you!
 
 CDK example to create an [Amazon OpenSearch Serverless](https://aws.amazon.com/opensearch-service/features/serverless/), [AWS Lambda](https://aws.amazon.com/pm/lambda), [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) and [AWS CloudTrail logs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) using Python.
@@ -26,6 +27,12 @@ This example demonstrates setting up a OpenSearch Serverless, CloudTrail and Clo
 
 Amazon OpenSearch API is only within VPC and the OpenSearch dashboard is allowed for public so you do not need to run Nginx.
 
+⚠️ Before running `CDK deploy`, please update the User IAM ARN in the `index.py` file.
+
+```
+ARN_IAM_USER = "arn:aws:iam::<yourAWSAccount>:user/<UserName>"
+```
+
 You can change the CloudTrail group name, Amazon OpenSearch collection name, CloudWatch retention. Below are default values. Here is the documentation of [Amazon OpenSearch Serverless Security](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-security.html) to read for you.
 
 ```
@@ -34,8 +41,6 @@ COLLECTION_NAME = "ctcollection"
 ```
 
 Currently we are using TLS with AWS encryption key, read more about [Amazon OpenSearch Serverless encryption](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-encryption.html).
-
-
 
 Once deployed, navigate to Amazon OpenSearch service console, select collections in Serverless section, select `ctcollection` and select dashboard URL, create your own Index pattern and explore the logs.
 
